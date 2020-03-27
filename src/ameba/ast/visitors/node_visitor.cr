@@ -6,6 +6,7 @@ module Ameba::AST
     Alias,
     Assign,
     Call,
+    Block,
     Case,
     ClassDef,
     ClassVar,
@@ -24,6 +25,7 @@ module Ameba::AST
     Var,
     When,
     While,
+    Until,
   ]
 
   # An AST Visitor that traverses the source and allows all nodes

@@ -81,6 +81,17 @@ module Ameba
     end
   end
 
+  struct RedundantControlExpressionRule < Rule::Base
+    getter nodes = [] of Crystal::ASTNode
+
+    def test(source)
+    end
+
+    def test(source, node, visitor : AST::RedundantControlExpressionVisitor)
+      nodes << node
+    end
+  end
+
   # A rule that always raises an error
   struct RaiseRule < Rule::Base
     property should_raise = false
@@ -139,11 +150,13 @@ module Ameba
       Crystal::OpAssign,
       Crystal::MultiAssign,
       Crystal::Block,
+      Crystal::Macro,
       Crystal::Def,
       Crystal::If,
       Crystal::While,
       Crystal::MacroLiteral,
       Crystal::Expressions,
+      Crystal::ControlExpression,
     ]
 
     def initialize(node)
